@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["anthony.lu1115@gmail.com"]
 
   spec.summary       = "A gem to test your typing skills."
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/AnthonyALu/typeking"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.4.0"
 
