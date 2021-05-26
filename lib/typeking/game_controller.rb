@@ -14,7 +14,6 @@ module Typeking
         @userHashes = {} #stores indexes for all users
         @currentUserData = {} #stores current stats
         @currentUid = 0 #current user id
-        @leaderboardArr = []
         setup_application
         end
 
@@ -91,31 +90,31 @@ module Typeking
         end
 
         def attempt_login(username)
-            if @userHashes[username] #check if user exists
+            begin
                 @currentUid = @userHashes[username] #update current user id to the username from the userhashes directory
                 @currentUserData = @userData[currentUid] #user data hash becomes hash from database
                 return "Hello #{@currentUserData[:name]}!" #user_login will puts this to terminal
-            else
+            rescue
                 return "You have not registered yet, please register first." #user_login will puts this to terminal
             end 
         end
 
 
-        def display_leaders(leaderCount)
+        def display_leaders(leaderCount,leaderboardArr)
             leaders = 0 #current number of users displayed on leaderboard
             while leaders < leaderCount #loop while displayed leaders is less than actual users
-                leaderHash = @leaderboardArr[leaders] #creates new hash using leaders as the index as the highest score would start from index 0
+                leaderHash = leaderboardArr[leaders] #creates new hash using leaders as the index as the highest score would start from index 0
                 puts "#{leaders+1}. #{leaderHash[:name]} - WPM: #{leaderHash[:high_score]}, Accuracy: #{leaderHash[:accuracy]}%, Worst Character: #{leaderHash[:worst_character]}" #uses hash to output leaderboards
                 leaders += 1 #increment leaders
             end
         end
 
         def show_leaderboards
-            @leaderboardArr = @userData.dup #creates a new duplicate array of all user data
-            puts "No entries yet!" unless @leaderboardArr.count > 0 #output when no users in data
-            @leaderboardArr.sort_by!{|w| w[:high_score]} #sort by ascending order
-            @leaderboardArr = @leaderboardArr.reverse #reverse order to descending
-            leaderCount = @leaderboardArr.count #checks how many users are in the array
+            leaderboardArr = @userData.dup #creates a new duplicate array of all user data
+            puts "No entries yet!" unless leaderboardArr.count > 0 #output when no users in data
+            leaderboardArr.sort_by!{|w| w[:high_score]} #sort by ascending order
+            leaderboardArr = leaderboardArr.reverse #reverse order to descending
+            leaderCount = leaderboardArr.count #checks how many users are in the array
             display_leaders(leaderCount) #calls method based on number of users
             start_screen #return to starting screen
         end
