@@ -7,4 +7,5 @@ require "typeking/user"
 module Typeking
   class Error < StandardError; end
   # Your code goes here...
+  
 end

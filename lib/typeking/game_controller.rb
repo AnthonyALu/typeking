@@ -15,13 +15,24 @@ module Typeking
         @currentUserData = {} #stores current stats
         @currentUid = 0 #current user id
         @leaderboardArr = []
-        print_title
+        setup_application
         end
 
-        def print_title
+        def setup_application
             system("clear") #clears terminal
             artOpts = Artii::Base.new :font => 'slant' #create artii options using Artii Ruby gem
             puts artOpts.asciify('Type King').colorize(:blue) #apply artii style to string to output to the application
+            if ARGV[0] == "-h" #command line argument that calls help function
+                gameController.help
+            else
+                ARGV.each do |i|
+                    attempt_registration(i.chomp) #command line argument that registers each user
+                end 
+            end
+            while ARGV.size > 0 #loop while there are elements in ARGV
+                ARGV.shift #delete ARGV so that application can get input later using 'gets'
+            end
+            start_screen
         end
 
         def start_screen
