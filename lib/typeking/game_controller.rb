@@ -115,7 +115,7 @@ module Typeking
             leaderboardArr.sort_by!{|w| w[:high_score]} #sort by ascending order
             leaderboardArr = leaderboardArr.reverse #reverse order to descending
             leaderCount = leaderboardArr.count #checks how many users are in the array
-            display_leaders(leaderCount) #calls method based on number of users
+            display_leaders(leaderCount, leaderboardArr) #calls method based on number of users
             start_screen #return to starting screen
         end
         
