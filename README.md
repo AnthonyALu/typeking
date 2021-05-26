@@ -19,8 +19,21 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-Typeking::GameController.new()
+Typeking::GameController.new() #starts the application
 ```
+
+    1. Install the gem
+    2. Open IRB by typing 'irb' in the terminal
+    3. Type 'require 'typeking'' and press enter
+    4. Type Typeking::GameController.new() and press enter
+    5. Use the keyboard to navigation to 'Register' and press enter
+    6. Login using the registered name (case-sensitive)
+    7. Press enter on the 'Play' option
+    8. Enter how many words you want to type (enter a number from 5-500)
+    9. Type the words that appear in the terminal
+    10. See results when typing is finished
+    11. Play again or log out to check if you have made the leaderboards!
+
 
 
 ## Development
